@@ -53,8 +53,7 @@ st.markdown("""
         border-bottom: 2px solid #f0f2f6;
     }
 
-    /* Highlight Card */
-    .highlight-card {
+        .highlight-card {
         background-color: #ffffff;
         border-radius: 8px;
         padding: 1.2rem;
@@ -63,17 +62,6 @@ st.markdown("""
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     }
 
-    /* Metric Card */
-    .metric-card {
-        background-color: #f9fafb;
-        border-radius: 8px;
-        padding: 1.5rem;
-        text-align: center;
-        margin: 1rem 0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
-    }
-
-    /* Highlight Number */
     .highlight-number {
         font-size: 2.2rem;
         font-weight: bold;
@@ -81,10 +69,26 @@ st.markdown("""
         margin-bottom: 0.5rem;
     }
 
-    /* Highlight Text */
     .highlight-text {
         color: #6c757d;
         font-size: 1rem;
+    }
+
+    /* Dark Mode Styles */
+    @media (prefers-color-scheme: dark) {
+        .highlight-card {
+            background-color: #2b2b2b; /* Darker background for dark mode */
+            border-left: 4px solid #1e90ff; /* Adjust border color for contrast */
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12); /* Lighter shadow */
+        }
+
+        .highlight-number {
+            color: #ffffff; /* Ensure text is visible in dark mode */
+        }
+
+        .highlight-text {
+            color: #dcdcdc; /* Softer text color for dark mode */
+        }
     }
 </style>
 
