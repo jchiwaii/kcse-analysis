@@ -41,30 +41,35 @@ st.markdown("""
         border-bottom: 2px solid #f0f2f6;
     }
     .highlight-card {
-        background-color: #f8f9fa;
+        background-color: #1e1e1e;
         border-radius: 10px;
-        padding: 1rem;
-        margin: 0.5rem 0;
+        padding: 1.8rem;
+        margin: 1rem 0;
         border-left: 5px solid #3498db;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease;
     }
     .metric-card {
-        background-color: #edf2f7;
+        background-color: #2d2d2d;
         border-radius: 10px;
-        padding: 1.5rem;
+        padding: 2rem;
         text-align: center;
-        margin: 0.5rem 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin: 1rem 0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease;
     }
     .highlight-number {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
         font-weight: bold;
-        color: #2c3e50;
-        margin-bottom: 0.5rem;
+        color: #e2e8f0;
+        margin-bottom: 1rem;
+        letter-spacing: -0.5px;
     }
     .highlight-text {
-        color: #4a5568;
-        font-size: 1rem;
+        color: #a0aec0;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        padding: 0 0.5rem;
     }
 </style>
 
