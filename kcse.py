@@ -208,7 +208,7 @@ with col2:
         <div class="highlight-number">Upto 2X</div>
         <div class="highlight-text">Male Top Performers (A & A-) compared to Female</div>
         <div class="highlight-text" style="margin-top: 0.5rem;
-        margin-bottom: 0.5rem;">
+        margin-bottom: 0.7rem;">
             Males: 6,040 vs Females: 3,396
         </div>
     </div>
