@@ -40,7 +40,34 @@ st.markdown("""
         padding: 1rem 0;
         border-bottom: 2px solid #f0f2f6;
     }
+    .highlight-card {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-left: 5px solid #3498db;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .metric-card {
+        background-color: #edf2f7;
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: center;
+        margin: 0.5rem 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .highlight-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+    .highlight-text {
+        color: #4a5568;
+        font-size: 1rem;
+    }
 </style>
+
 """, unsafe_allow_html=True)
 
 # Create grade distribution data
@@ -98,6 +125,44 @@ with col4:
     female_passing = (passing_grades['Female'].sum() / df_grades['Female'].sum() * 100)
     st.metric("Female Qualifying Rate", 
               f"{female_passing:.1f}%")
+
+st.markdown("---")
+
+st.markdown('<p class="custom-header">Notable Statistics</p>', unsafe_allow_html=True)
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("""
+    <div class="highlight-card">
+        <h3>Grade Distribution Peaks</h3>
+        <ul>
+            <li>Female students peaked at grade <strong>D</strong> with 79,832 candidates</li>
+            <li>Male students peaked at grade <strong>D-</strong> with 79,306 candidates</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="highlight-card">
+        <h3>Gender Ratios at Extremes</h3>
+        <ul>
+            <li>Male to Female ratio for grade A is <strong>2.04</strong> (male dominance)</li>
+            <li>Male to Female ratio for grade E is <strong>1.40</strong> (similar pattern)</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="metric-card">
+        <div class="highlight-number">2X</div>
+        <div class="highlight-text">Male Top Performers (A & A-) compared to Female</div>
+        <div class="highlight-text" style="margin-top: 0.5rem;">
+            Males: 6,040 vs Females: 3,396
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
 
