@@ -53,41 +53,56 @@ st.markdown("""
         border-bottom: 2px solid #f0f2f6;
     }
 
-        .highlight-card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        padding: 1.2rem;
+        /* Light Mode Styles */
+    .highlight-card {
+        background-color: #f9fafb; /* Soft neutral background */
+        border-radius: 10px; /* Subtle rounding */
+        padding: 1.5rem;
         margin: 1rem 0;
-        border-left: 4px solid #007bff;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        border-left: 5px solid #0078d7; /* Slightly softer blue for accents */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Light shadow */
     }
 
     .highlight-number {
-        font-size: 2.2rem;
+        font-size: 2rem;
         font-weight: bold;
-        color: #34495e;
+        color: #2c3e50; /* Dark gray for readability */
         margin-bottom: 0.5rem;
     }
 
     .highlight-text {
-        color: #6c757d;
+        color: #4a5568; /* Medium gray for text contrast */
         font-size: 1rem;
+    }
+
+    .metric-card {
+        background-color: #ffffff; /* Neutral white */
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: center;
+        margin: 1rem 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Light shadow */
     }
 
     /* Dark Mode Styles */
     @media (prefers-color-scheme: dark) {
         .highlight-card {
-            background-color: #2b2b2b; /* Darker background for dark mode */
-            border-left: 4px solid #1e90ff; /* Adjust border color for contrast */
-            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12); /* Lighter shadow */
+            background-color: #1e1e2e; /* Soft dark background */
+            border-left: 5px solid #1d4ed8; /* Richer blue for dark mode */
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05); /* Softer shadow */
         }
 
         .highlight-number {
-            color: #ffffff; /* Ensure text is visible in dark mode */
+            color: #e2e8f0; /* Light gray for better contrast */
         }
 
         .highlight-text {
-            color: #dcdcdc; /* Softer text color for dark mode */
+            color: #a0aec0; /* Softer gray for text */
+        }
+
+        .metric-card {
+            background-color: #2d2d3a; /* Neutral dark */
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05); /* Subtle shadow */
         }
     }
 </style>
