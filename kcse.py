@@ -53,58 +53,62 @@ st.markdown("""
         border-bottom: 2px solid #f0f2f6;
     }
 
-        /* Light Mode Styles */
     .highlight-card {
-        background-color: #f9fafb; /* Soft neutral background */
-        border-radius: 10px; /* Subtle rounding */
+        background-color: #2c3e50;
+        border-radius: 10px;
         padding: 1.5rem;
         margin: 1rem 0;
-        border-left: 5px solid #0078d7; /* Slightly softer blue for accents */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Light shadow */
+        border-left: 5px solid #0078d7;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
     }
 
     .highlight-number {
         font-size: 2rem;
         font-weight: bold;
-        color: #2c3e50; /* Dark gray for readability */
+        color: #ffffff;
         margin-bottom: 0.5rem;
     }
 
     .highlight-text {
-        color: #4a5568; /* Medium gray for text contrast */
+        color: #e2e8f0;
         font-size: 1rem;
     }
 
     .metric-card {
-        background-color: #ffffff; /* Neutral white */
+        background-color: #2c3e50;
         border-radius: 10px;
         padding: 1.5rem;
         text-align: center;
         margin: 1rem 0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Light shadow */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
     }
 
-    /* Dark Mode Styles */
     @media (prefers-color-scheme: dark) {
         .highlight-card {
-            background-color: #1e1e2e; /* Soft dark background */
-            border-left: 5px solid #1d4ed8; /* Richer blue for dark mode */
-            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05); /* Softer shadow */
+            background-color: #ffffff;
+            border-left: 5px solid #1d4ed8;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+            color: #2c3e50;
         }
 
         .highlight-number {
-            color: #e2e8f0; /* Light gray for better contrast */
+            color: #2c3e50;
         }
 
         .highlight-text {
-            color: #a0aec0; /* Softer gray for text */
+            color: #4a5568;
         }
 
         .metric-card {
-            background-color: #2d2d3a; /* Neutral dark */
-            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.05); /* Subtle shadow */
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+            color: #2c3e50;
         }
     }
+</style>
+
 </style>
 
 
