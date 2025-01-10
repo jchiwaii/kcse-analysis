@@ -53,6 +53,10 @@ grades_data = {
 
 df_grades = pd.DataFrame(grades_data)
 
+# Calculate total students by gender
+total_male = df_grades['Male'].sum()
+total_female = df_grades['Female'].sum()
+
 # Calculate mean grade and other metrics
 grade_points = {
     'A': 12, 'A-': 11, 'B+': 10, 'B': 9, 'B-': 8, 'C+': 7,
@@ -311,11 +315,14 @@ with col3:
     st.metric("Male to Female Ratio in C Grades", 
               f"{c_gender_ratio:.2f}")
 
+# Calculate D grades and E grades totals for the detailed analysis
+total_d_grades = df_grades[df_grades['Grade'].isin(['D+', 'D', 'D-'])]['Total'].sum()
+e_grades = df_grades[df_grades['Grade'] == 'E']['Total'].sum()
+
 # Download functionality
 st.markdown("---")
 st.markdown("### Download Analysis Data")
 
-# Create detailed analysis DataFrame
 detailed_analysis = pd.DataFrame({
     'Metric': [
         'Total Students',
@@ -332,9 +339,15 @@ detailed_analysis = pd.DataFrame({
         'Total E Grades',
         'Male to Female Ratio Overall',
         'Male to Female Ratio in Top Grades',
-        'University Qualification Rate'
+        'University Qualification Rate',
+        'Male Qualification Rate',
+        'Female Qualification Rate',
+        'Gender Gap in Mean Grade',
+        'Total Male Students',
+        'Total Female Students'
     ],
     'Value': [
+        df_grades['Total'].sum(),
         passing_grades['Total'].sum(),
         passing_grades['Male'].sum(),
         passing_grades['Female'].sum(),
@@ -348,7 +361,12 @@ detailed_analysis = pd.DataFrame({
         e_grades,
         total_male/total_female,
         top_gender_ratio,
-        passing_percentage
+        passing_percentage,
+        male_passing,
+        female_passing,
+        male_mean - female_mean,
+        total_male,
+        total_female
     ]
 })
 
