@@ -196,8 +196,8 @@ with col1:
     <div class="highlight-card">
         <h3>Gender Ratios at Extremes</h3>
         <ul>
-            <li>Male to Female ratio for grade A is <strong>2.04</strong> (male dominance)</li>
-            <li>Male to Female ratio for grade E is <strong>1.40</strong> (similar pattern)</li>
+            <li>Male to Female ratio for grade A is <strong>2.04</strong> (male dominance?🙂)</li>
+            <li>Male to Female ratio for grade E is <strong>1.40</strong> (male dominance in failing?🙃)</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
@@ -205,9 +205,10 @@ with col1:
 with col2:
     st.markdown("""
     <div class="metric-card">
-        <div class="highlight-number">2X</div>
+        <div class="highlight-number">Upto 2X</div>
         <div class="highlight-text">Male Top Performers (A & A-) compared to Female</div>
-        <div class="highlight-text" style="margin-top: 0.5rem;">
+        <div class="highlight-text" style="margin-top: 0.5rem;
+        margin-bottom: 0.5rem;">
             Males: 6,040 vs Females: 3,396
         </div>
     </div>
