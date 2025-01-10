@@ -11,28 +11,40 @@ st.set_page_config(layout="wide", page_title="KCSE 2024 Analysis Dashboard", pag
 # Custom CSS
 st.markdown("""
 <style>
+    /* General Padding */
     .main {
         padding: 0rem 1rem;
     }
+
+    /* Styling for Plotly Charts */
     .stPlotlyChart {
         background-color: white;
         border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin: 1rem 0;
         padding: 1rem;
     }
+
+    /* Section Divider */
     .section-divider {
         margin: 2rem 0;
     }
+
+    /* Metric Styling */
     div[data-testid="stMetricValue"] {
         font-size: 24px;
     }
+
     div[data-testid="stMetricDelta"] {
         font-size: 16px;
     }
+
+    /* Emotion Cache Margin */
     .st-emotion-cache-1wivap2 {
         margin-bottom: 2rem;
     }
+
+    /* Header Styling */
     .custom-header {
         font-size: 1.8rem;
         font-weight: bold;
@@ -40,38 +52,42 @@ st.markdown("""
         padding: 1rem 0;
         border-bottom: 2px solid #f0f2f6;
     }
+
+    /* Highlight Card */
     .highlight-card {
-        background-color: #1e1e1e;
-        border-radius: 10px;
-        padding: 1.8rem;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 1.2rem;
         margin: 1rem 0;
-        border-left: 5px solid #3498db;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        transition: transform 0.2s ease;
+        border-left: 4px solid #007bff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     }
+
+    /* Metric Card */
     .metric-card {
-        background-color: #2d2d2d;
-        border-radius: 10px;
-        padding: 2rem;
+        background-color: #f9fafb;
+        border-radius: 8px;
+        padding: 1.5rem;
         text-align: center;
         margin: 1rem 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        transition: transform 0.2s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
     }
+
+    /* Highlight Number */
     .highlight-number {
-        font-size: 2.8rem;
+        font-size: 2.2rem;
         font-weight: bold;
-        color: #e2e8f0;
-        margin-bottom: 1rem;
-        letter-spacing: -0.5px;
+        color: #34495e;
+        margin-bottom: 0.5rem;
     }
+
+    /* Highlight Text */
     .highlight-text {
-        color: #a0aec0;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        padding: 0 0.5rem;
+        color: #6c757d;
+        font-size: 1rem;
     }
 </style>
+
 
 """, unsafe_allow_html=True)
 
