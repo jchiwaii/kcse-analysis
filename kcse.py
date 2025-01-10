@@ -53,6 +53,10 @@ grades_data = {
 
 df_grades = pd.DataFrame(grades_data)
 
+# Calculate total students by gender
+total_male = df_grades['Male'].sum()
+total_female = df_grades['Female'].sum()
+
 # Calculate mean grade and other metrics
 grade_points = {
     'A': 12, 'A-': 11, 'B+': 10, 'B': 9, 'B-': 8, 'C+': 7,
@@ -81,23 +85,19 @@ st.markdown("---")
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.metric("Overall Mean Grade", f"{overall_mean}/12", 
-              delta=f"Male: {male_mean} | Female: {female_mean}")
+    st.metric("Overall Mean Grade", f"{overall_mean}/12")
 with col2:
     passing_percentage = (passing_grades['Total'].sum() / df_grades['Total'].sum() * 100)
     st.metric("University Qualifying Grades (C+ & Above)", 
-              f"{passing_percentage:.1f}%",
-              f"{passing_grades['Total'].sum():,} students")
+              f"{passing_percentage:.1f}%")
 with col3:
     male_passing = (passing_grades['Male'].sum() / df_grades['Male'].sum() * 100)
     st.metric("Male Qualifying Rate", 
-              f"{male_passing:.1f}%",
-              f"{passing_grades['Male'].sum():,} students")
+              f"{male_passing:.1f}%")
 with col4:
     female_passing = (passing_grades['Female'].sum() / df_grades['Female'].sum() * 100)
     st.metric("Female Qualifying Rate", 
-              f"{female_passing:.1f}%",
-              f"{passing_grades['Female'].sum():,} students")
+              f"{female_passing:.1f}%")
 
 st.markdown("---")
 
@@ -175,20 +175,17 @@ col1, col2, col3 = st.columns(3)
 with col1:
     male_top_grades = df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Male'].sum()
     st.metric("Male Top Performers (A & A-)", 
-              f"{male_top_grades:,}",
-              f"{(male_top_grades/df_grades['Male'].sum()*100):.2f}%")
+              f"{male_top_grades:,}")
 
 with col2:
     male_middle_grades = df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-', 'C+'])]['Male'].sum()
     st.metric("Male Middle Performers (B+ to C+)", 
-              f"{male_middle_grades:,}",
-              f"{(male_middle_grades/df_grades['Male'].sum()*100):.2f}%")
+              f"{male_middle_grades:,}")
 
 with col3:
     male_low_grades = df_grades[df_grades['Grade'].isin(['D+', 'D', 'D-', 'E'])]['Male'].sum()
     st.metric("Male Low Performers (D+ & Below)", 
-              f"{male_low_grades:,}",
-              f"{(male_low_grades/df_grades['Male'].sum()*100):.2f}%")
+              f"{male_low_grades:,}")
 
 st.markdown("---")
 
@@ -218,7 +215,7 @@ with col2:
     })
     fig_female_pass = px.pie(female_pass_fail, values='Count', names='Category',
                             title='Female Students: University Qualification Distribution',
-                            color_discrete_sequence=['#e84393', '#fd79a8'])
+                            color_discrete_sequence=['#9b59b6', '#fda7df'])
     fig_female_pass.update_layout(
         height=500,
         title_x=0.5
@@ -231,20 +228,17 @@ col1, col2, col3 = st.columns(3)
 with col1:
     female_top_grades = df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Female'].sum()
     st.metric("Female Top Performers (A & A-)", 
-              f"{female_top_grades:,}",
-              f"{(female_top_grades/df_grades['Female'].sum()*100):.2f}%")
+              f"{female_top_grades:,}")
 
 with col2:
     female_middle_grades = df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-', 'C+'])]['Female'].sum()
     st.metric("Female Middle Performers (B+ to C+)", 
-              f"{female_middle_grades:,}",
-              f"{(female_middle_grades/df_grades['Female'].sum()*100):.2f}%")
+              f"{female_middle_grades:,}")
 
 with col3:
     female_low_grades = df_grades[df_grades['Grade'].isin(['D+', 'D', 'D-', 'E'])]['Female'].sum()
     st.metric("Female Low Performers (D+ & Below)", 
-              f"{female_low_grades:,}",
-              f"{(female_low_grades/df_grades['Female'].sum()*100):.2f}%")
+              f"{female_low_grades:,}")
 
 st.markdown("---")
 
@@ -263,7 +257,7 @@ fig_compare.add_trace(go.Bar(
     name='Female',
     x=df_grades['Grade'],
     y=df_grades['Female'],
-    marker_color='#e84393'
+    marker_color='#9b59b6'
 ))
 fig_compare.update_layout(
     barmode='group',
@@ -275,7 +269,60 @@ fig_compare.update_layout(
 )
 st.plotly_chart(fig_compare, use_container_width=True)
 
+# Comprehensive Summary Metrics
+st.markdown("---")
+st.markdown('<p class="custom-header">Comprehensive Summary Metrics</p>', unsafe_allow_html=True)
+
+# Performance Distribution Metrics
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    # Top Grades Analysis
+    total_top_grades = df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Total'].sum()
+    st.metric("Total A & A- Grades", 
+              f"{total_top_grades:,}",
+              f"{(total_top_grades/df_grades['Total'].sum()*100):.2f}% of total")
+    
+    # Gender ratio in top grades
+    top_gender_ratio = df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Male'].sum() / \
+                      df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Female'].sum()
+    st.metric("Male to Female Ratio in A Grades", 
+              f"{top_gender_ratio:.2f}")
+
+with col2:
+    # Middle Grades Analysis
+    middle_grades = df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-'])]['Total'].sum()
+    st.metric("Total B+, B, B- Grades", 
+              f"{middle_grades:,}",
+              f"{(middle_grades/df_grades['Total'].sum()*100):.2f}% of total")
+    
+    # Gender distribution in middle grades
+    middle_gender_ratio = df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-'])]['Male'].sum() / \
+                         df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-'])]['Female'].sum()
+    st.metric("Male to Female Ratio in B Grades", 
+              f"{middle_gender_ratio:.2f}")
+
+with col3:
+    # C Grades Analysis
+    c_grades = df_grades[df_grades['Grade'].isin(['C+', 'C', 'C-'])]['Total'].sum()
+    st.metric("Total C+, C, C- Grades", 
+              f"{c_grades:,}",
+              f"{(c_grades/df_grades['Total'].sum()*100):.2f}% of total")
+    
+    # Gender distribution in C grades
+    c_gender_ratio = df_grades[df_grades['Grade'].isin(['C+', 'C', 'C-'])]['Male'].sum() / \
+                    df_grades[df_grades['Grade'].isin(['C+', 'C', 'C-'])]['Female'].sum()
+    st.metric("Male to Female Ratio in C Grades", 
+              f"{c_gender_ratio:.2f}")
+
+# Calculate D grades and E grades totals for the detailed analysis
+total_d_grades = df_grades[df_grades['Grade'].isin(['D+', 'D', 'D-'])]['Total'].sum()
+e_grades = df_grades[df_grades['Grade'] == 'E']['Total'].sum()
+
 # Performance ratio analysis
+st.markdown("---")
+st.markdown('<p class="custom-header">Performance Ratio Analysis</p>', unsafe_allow_html=True)
+
 col1, col2 = st.columns(2)
 
 with col1:
@@ -320,142 +367,7 @@ with col2:
     )
     st.plotly_chart(fig_dist, use_container_width=True)
 
-# D Grades Analysis
-st.markdown('<p class="custom-header">D Grades Analysis</p>', unsafe_allow_html=True)
-
-d_grades = df_grades[df_grades['Grade'].isin(['D+', 'D', 'D-'])]
-
-col1, col2 = st.columns(2)
-
-with col1:
-    # D grades distribution by gender
-    fig_d_grades = go.Figure()
-    fig_d_grades.add_trace(go.Bar(
-        name='Male',
-        x=d_grades['Grade'],
-        y=d_grades['Male'],
-        marker_color='#3498db'
-    ))
-    fig_d_grades.add_trace(go.Bar(
-        name='Female',
-        x=d_grades['Grade'],
-        y=d_grades['Female'],
-        marker_color='#e84393'
-    ))
-    fig_d_grades.update_layout(
-        title='D Grades Distribution by Gender',
-        height=500,
-        title_x=0.5,
-        barmode='group',
-        bargap=0.2,
-        bargroupgap=0.1
-    )
-    st.plotly_chart(fig_d_grades, use_container_width=True)
-
-with col2:
-    # D grades percentage composition
-    d_grades_total = {
-        'Grade': ['D+', 'D', 'D-'],
-        'Percentage': [
-            (d_grades[d_grades['Grade'] == 'D+']['Total'].iloc[0] / d_grades['Total'].sum() * 100),
-            (d_grades[d_grades['Grade'] == 'D']['Total'].iloc[0] / d_grades['Total'].sum() * 100),
-            (d_grades[d_grades['Grade'] == 'D-']['Total'].iloc[0] / d_grades['Total'].sum() * 100)
-        ]
-    }
-    fig_d_composition = px.pie(
-        d_grades_total, 
-        values='Percentage', 
-        names='Grade',
-        title='Distribution of D Grades',
-        color_discrete_sequence=['#74b9ff', '#0984e3', '#74b9ff']
-    )
-    fig_d_composition.update_layout(
-        height=500,
-        title_x=0.5
-    )
-    st.plotly_chart(fig_d_composition, use_container_width=True)
-
-# D grades metrics
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    total_d_plus = d_grades[d_grades['Grade'] == 'D+']['Total'].iloc[0]
-    st.metric(
-        "Total D+ Grades",
-        f"{total_d_plus:,}",
-        f"{(total_d_plus/df_grades['Total'].sum()*100):.2f}% of total"
-    )
-
-with col2:
-    total_d = d_grades[d_grades['Grade'] == 'D']['Total'].iloc[0]
-    st.metric(
-        "Total D Grades",
-        f"{total_d:,}",
-        f"{(total_d/df_grades['Total'].sum()*100):.2f}% of total"
-    )
-
-with col3:
-    total_d_minus = d_grades[d_grades['Grade'] == 'D-']['Total'].iloc[0]
-    st.metric(
-        "Total D- Grades",
-        f"{total_d_minus:,}",
-        f"{(total_d_minus/df_grades['Total'].sum()*100):.2f}% of total"
-    )
-
-# Add a section for gender comparison in D grades
-st.markdown("### D Grades Gender Analysis")
-d_grades_gender = pd.DataFrame({
-    'Grade': ['D+', 'D', 'D-'] * 2,
-    'Gender': ['Male'] * 3 + ['Female'] * 3,
-    'Percentage': [
-        d_grades['Male'].iloc[0] / d_grades['Male'].sum() * 100,
-        d_grades['Male'].iloc[1] / d_grades['Male'].sum() * 100,
-        d_grades['Male'].iloc[2] / d_grades['Male'].sum() * 100,
-        d_grades['Female'].iloc[0] / d_grades['Female'].sum() * 100,
-        d_grades['Female'].iloc[1] / d_grades['Female'].sum() * 100,
-        d_grades['Female'].iloc[2] / d_grades['Female'].sum() * 100
-    ]
-})
-
-fig_d_gender = px.bar(
-    d_grades_gender,
-    x='Grade',
-    y='Percentage',
-    color='Gender',
-    barmode='group',
-    title='Gender Distribution within D Grades',
-    color_discrete_sequence=['#3498db', '#e84393']
-)
-fig_d_gender.update_layout(
-    height=500,
-    title_x=0.5,
-    yaxis_title='Percentage within Gender',
-    bargap=0.2,
-    bargroupgap=0.1
-)
-st.plotly_chart(fig_d_gender, use_container_width=True)
-
-# Final metrics dashboard for D grades
-st.markdown("### D Grades Summary Metrics")
-col1, col2 = st.columns(2)
-
-with col1:
-    total_d_grades = d_grades['Total'].sum()
-    st.metric(
-        "Total Students with D Grades",
-        f"{total_d_grades:,}",
-        f"{(total_d_grades/df_grades['Total'].sum()*100):.2f}% of all students"
-    )
-
-with col2:
-    d_gender_ratio = d_grades['Male'].sum() / d_grades['Female'].sum()
-    st.metric(
-        "Male to Female Ratio in D Grades",
-        f"{d_gender_ratio:.2f}",
-        "Males per Female"
-    )
-
-# Add download functionality for the analysis
+# Download functionality (rest of the code remains the same)
 st.markdown("---")
 st.markdown("### Download Analysis Data")
 
@@ -469,9 +381,19 @@ detailed_analysis = pd.DataFrame({
         'Overall Mean Grade',
         'Male Mean Grade',
         'Female Mean Grade',
-        'Total D Grade Students',
-        'Male D Grade Students',
-        'Female D Grade Students'
+        'Total Top Grades (A, A-)',
+        'Total Middle Grades (B+, B, B-)',
+        'Total C Grades (C+, C, C-)',
+        'Total D Grades (D+, D, D-)',
+        'Total E Grades',
+        'Male to Female Ratio Overall',
+        'Male to Female Ratio in Top Grades',
+        'University Qualification Rate',
+        'Male Qualification Rate',
+        'Female Qualification Rate',
+        'Gender Gap in Mean Grade',
+        'Total Male Students',
+        'Total Female Students'
     ],
     'Value': [
         df_grades['Total'].sum(),
@@ -481,9 +403,19 @@ detailed_analysis = pd.DataFrame({
         overall_mean,
         male_mean,
         female_mean,
-        d_grades['Total'].sum(),
-        d_grades['Male'].sum(),
-        d_grades['Female'].sum()
+        total_top_grades,
+        middle_grades,
+        c_grades,
+        total_d_grades,
+        e_grades,
+        total_male/total_female,
+        top_gender_ratio,
+        passing_percentage,
+        male_passing,
+        female_passing,
+        male_mean - female_mean,
+        total_male,
+        total_female
     ]
 })
 
