@@ -157,7 +157,7 @@ with col2:
         'Count': [passing_grades['Male'].sum(), failing_grades['Male'].sum()]
     })
     fig_male_pass = px.pie(male_pass_fail, values='Count', names='Category',
-                          title='Male Students: University Qualification Distribution',
+                          title='Male Students: University Qualification',
                           color_discrete_sequence=['#3498db', '#bdc3c7'])
     fig_male_pass.update_layout(
         height=500,
@@ -335,7 +335,6 @@ detailed_analysis = pd.DataFrame({
         'University Qualification Rate'
     ],
     'Value': [
-        total_students,
         passing_grades['Total'].sum(),
         passing_grades['Male'].sum(),
         passing_grades['Female'].sum(),
