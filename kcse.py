@@ -62,6 +62,11 @@ st.markdown("""
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         color: #ffffff;
     }
+    
+    .highlight-card h3 {
+        color: #4a5568;
+    }
+    
 
     .highlight-number {
         font-size: 2rem;
