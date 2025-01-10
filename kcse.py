@@ -392,39 +392,33 @@ st.markdown('<p class="custom-header">Comprehensive Summary Metrics</p>', unsafe
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    # Top Grades Analysis
     total_top_grades = df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Total'].sum()
     st.metric("Total A & A- Grades", 
               f"{total_top_grades:,}",
               f"{(total_top_grades/df_grades['Total'].sum()*100):.2f}% of total")
     
-    # Gender ratio in top grades
     top_gender_ratio = df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Male'].sum() / \
                       df_grades[df_grades['Grade'].isin(['A', 'A-'])]['Female'].sum()
     st.metric("Male to Female Ratio in A Grades", 
               f"{top_gender_ratio:.2f}")
 
 with col2:
-    # Middle Grades Analysis
     middle_grades = df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-'])]['Total'].sum()
     st.metric("Total B+, B, B- Grades", 
               f"{middle_grades:,}",
               f"{(middle_grades/df_grades['Total'].sum()*100):.2f}% of total")
     
-    # Gender distribution in middle grades
     middle_gender_ratio = df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-'])]['Male'].sum() / \
                          df_grades[df_grades['Grade'].isin(['B+', 'B', 'B-'])]['Female'].sum()
     st.metric("Male to Female Ratio in B Grades", 
               f"{middle_gender_ratio:.2f}")
 
 with col3:
-    # C Grades Analysis
     c_grades = df_grades[df_grades['Grade'].isin(['C+', 'C', 'C-'])]['Total'].sum()
     st.metric("Total C+, C, C- Grades", 
               f"{c_grades:,}",
               f"{(c_grades/df_grades['Total'].sum()*100):.2f}% of total")
     
-    # Gender distribution in C grades
     c_gender_ratio = df_grades[df_grades['Grade'].isin(['C+', 'C', 'C-'])]['Male'].sum() / \
                     df_grades[df_grades['Grade'].isin(['C+', 'C', 'C-'])]['Female'].sum()
     st.metric("Male to Female Ratio in C Grades", 
